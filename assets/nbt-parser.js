@@ -336,17 +336,17 @@ class Compound {
     }
 }
 class IntArray extends ByteArray {
-    constructor(bytes) {
-        super(bytes)
+constructor(bytes) {
+    super(bytes)
+}
+get tagInfo() {
+    return {
+        bytesLength: 4,
+        childId: 3,
+        tagId: 11,
+        snbt: ["I"]
     }
-    get tagInfo() {
-        return {
-            bytesLength: 4,
-            childId: 3,
-            tagId: 11,
-            snbt: ["I"]
-        }
-    }
+}
 }
 class LongArray extends ByteArray {
     constructor(bytes) {

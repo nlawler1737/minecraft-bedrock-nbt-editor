@@ -1,0 +1,162 @@
+
+:root {
+    --scale: 1;
+    --nbtIconImgSize: calc(64px * var(--scale));
+    --nbtIconSize: calc(var(--nbtIconImgSize)/4)
+}
+body {
+    font-family: monospace;
+    font-size: calc(14px * var(--scale));
+    margin: 0;
+}
+
+#tree {
+    margin-left: calc(var(--nbtIconSize) * 1.5);
+}
+
+
+.inline {
+    display: inline-block;
+}
+
+.center {
+    display: grid;
+    place-items: center;
+}
+.highlight {
+    background-color: lightblue;
+}
+
+#controls {
+    display: flex;
+}
+#controls > * {
+    cursor: pointer;
+}
+
+.controlButton {
+    font-size: calc(var(--nbtIconSize) * 1);
+    background-color: grey;
+    width: var(--nbtIconSize);
+    height: var(--nbtIconSize);
+    border-radius: 0.2em;
+    margin: 0.2em;
+    line-height: 0;
+}
+
+.container {
+    /* background-color: lightgray; */
+    box-sizing: border-box;
+    display: flex;
+    flex-direction: column;
+    flex-wrap: wrap;
+    /* margin-left: 4px; */
+}
+#tree > .container {
+    margin-left: 0;
+}
+.container {
+    margin-left: calc(var(--nbtIconSize) * -0.75);
+}
+.collapseButton {
+    height: 50%;
+}
+
+.collapseButton::after {
+    content: attr(data-content);
+    position: absolute;
+    background-color: lightgray;
+    color: black;
+    border: calc(var(--nbtIconSize) * 0.05) solid grey;
+    /* top: 1px; */
+    height: calc(var(--nbtIconSize)*.6);
+    width: calc(var(--nbtIconSize)*.6);
+    line-height: calc(var(--nbtIconSize)/2);
+    text-align: center;
+    border-radius: 0.1em;
+    margin-left: calc(var(--nbtIconSize) * -1);
+    cursor: pointer;
+
+    /* color: black;
+    border: 1px solid grey;
+    height: 10px;
+    width: 10px;
+    line-height: 8px;
+    text-align: center;
+    border-radius: 0.1em; */
+    
+}
+.header {
+    display: flex;
+    align-items: center;
+    height: calc(var(--nbtIconSize) + (var(--nbtIconSize) / 4));
+    box-sizing: border-box;
+    /* background-color: lightblue; */
+}
+.key {
+    box-sizing: border-box;
+    margin-right: calc(var(--nbtIconSize) / 2);
+    font-weight: bolder;
+}
+.key::after {
+    content: ":";
+}
+.value {
+    white-space: nowrap;
+}
+.body {
+    /* padding-left: 20px; */
+    margin-left: calc(var(--nbtIconSize) * 2)
+}
+.collapse {
+    display: none;
+}
+
+
+
+.icon {
+    background-image: url(https://static.wikia.nocookie.net/minecraft_gamepedia/images/d/d0/Nbtsheet.png);
+    background-size: var(--nbtIconImgSize);
+    image-rendering: pixelated;
+    width: var(--nbtIconSize);
+    height: var(--nbtIconSize);
+    display: inline-block;
+    margin-left: calc(var(--nbtIconSize) / 4);
+    margin-right: calc(var(--nbtIconSize) / 4);
+}
+.icon-byte {
+    background-position: calc(var(--nbtIconSize) * 0) calc(var(--nbtIconSize) * 0);
+}
+.icon-double {
+    background-position: calc(var(--nbtIconSize) * -1) calc(var(--nbtIconSize) * 0);
+}
+.icon-float {
+    background-position: calc(var(--nbtIconSize) * -2) calc(var(--nbtIconSize) * 0);
+}
+.icon-int {
+    background-position: calc(var(--nbtIconSize) * -3) calc(var(--nbtIconSize) * 0);
+}
+.icon-long {
+    background-position: calc(var(--nbtIconSize) * 0) calc(var(--nbtIconSize) * -1);
+}
+.icon-short {
+    background-position: calc(var(--nbtIconSize) * -1) calc(var(--nbtIconSize) * -1);
+}
+.icon-string {
+    background-position: calc(var(--nbtIconSize) * -2) calc(var(--nbtIconSize) * -1);
+}
+.icon-compound {
+    background-position: calc(var(--nbtIconSize) * -3) calc(var(--nbtIconSize) * -1);
+}
+.icon-byteArr {
+    background-position: calc(var(--nbtIconSize) * 0) calc(var(--nbtIconSize) * -2);
+}
+.icon-intArr {
+    background-position: calc(var(--nbtIconSize) * -1) calc(var(--nbtIconSize) * -2);
+}
+.icon-list {
+    background-position: calc(var(--nbtIconSize) * -2) calc(var(--nbtIconSize) * -2);
+}
+.icon-longArr {
+    background-position: calc(var(--nbtIconSize) * 0) calc(var(--nbtIconSize) * -3);
+}
