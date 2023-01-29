@@ -6,14 +6,12 @@ fileInput.oninput = function() {
 }
 
 document.querySelector("#zoomIn").onclick = function () {
-    var rs = getComputedStyle(root);
-    // alert("The value of --blue is: " + rs.getPropertyValue('--blue'));
-    root.style.setProperty("--scale",+rs.getPropertyValue("--scale")+0.1)
+    const rootStyles = getComputedStyle(root);
+    root.style.setProperty("--scale",+rootStyles.getPropertyValue("--scale")+0.1)
 }
 document.querySelector("#zoomOut").onclick = function () {
-    var rs = getComputedStyle(root);
-    // alert("The value of --blue is: " + rs.getPropertyValue('--blue'));
-    root.style.setProperty("--scale",+rs.getPropertyValue("--scale")-0.1)
+    const rootStyles = getComputedStyle(root);
+    root.style.setProperty("--scale",+rootStyles.getPropertyValue("--scale")-0.1)
 }
 
 
