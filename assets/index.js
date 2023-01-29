@@ -1,4 +1,10 @@
+const fileInput = document.querySelector("#fileInput")
 const root = document.querySelector(":root")
+
+fileInput.oninput = function() {
+    fromFile("#fileInput","#fileOutput")
+}
+
 document.querySelector("#zoomIn").onclick = function () {
     var rs = getComputedStyle(root);
     // alert("The value of --blue is: " + rs.getPropertyValue('--blue'));
@@ -10,62 +16,12 @@ document.querySelector("#zoomOut").onclick = function () {
     root.style.setProperty("--scale",+rs.getPropertyValue("--scale")-0.1)
 }
 
-const fileInput = document.querySelector("#fileInput")
 
-fileInput.oninput = function() {
-    // main("#fileInput","#fileOutput")
-    fromFile("#fileInput","#fileOutput")
-}
-// fetch("/level2.dat").then(data=>{
-//     main("#fileInput","#fileOutput",data)
+// fetch("/level.dat").then(data=>{
+//     fromFile("","#fileOutput",data)
 // })
 
-fetch("/level.dat").then(data=>{
-    fromFile("","#fileOutput",data)
-    // data.arrayBuffer().then(buff=>{
-    //     let nbt = new NBT(Array.from(new Uint8Array(buff)))
-    //     console.log(nbt)
-    // })
-})
 
-function fromFile(inputSelector, outputSelector, dataFromFileUrl=undefined) { //Browser
-    const file = dataFromFileUrl || document.querySelector(inputSelector).files[0]
-    const name = file.name || decodeURI(file.url).match(/[\w\-. ]+$/)[0]
-    console.log(name)
-    file.arrayBuffer().then(buffer=>{
-        let nbt = new NBT(Array.from(new Uint8Array(buffer)))
-        displayNBT(nbt,name)
-        // console.log(nbt)
-    })
-}
-
-function displayNBT(nbt,name) {
-    // console.log(nbt)
-    // console.log(nbt.value[0].value instanceof Compound)
-    const compound = nbt.value[0]
-    let html = new Element(compound, new Compound([0]),name).html
-    // console.log(html)
-    let nbtTree = document.querySelector("#tree")
-    nbtTree.innerHTML = ""
-    nbtTree.append(html)
-    
-}
-
-
-
-/* 
-
-    has extender/children -- is compound list array
-
-    has key -- child of compound
-
-
-
-    + icon name -- group header
-    icon name value -- compound element
-    icon value -- single element
-
-*/
 
 class Element {
     #element
@@ -168,6 +124,24 @@ class Element {
     }
 }
 
+function fromFile(inputSelector, outputSelector, dataFromFileUrl=undefined) { //Browser
+    const file = dataFromFileUrl || document.querySelector(inputSelector).files[0]
+    const name = file.name || decodeURI(file.url).match(/[\w\-. ]+$/)[0]
+    console.log(name)
+    file.arrayBuffer().then(buffer=>{
+        let nbt = new NBT(Array.from(new Uint8Array(buffer)))
+        displayNBT(nbt,name)
+    })
+}
+
+function displayNBT(nbt,name) {
+    const compound = nbt.value[0]
+    let html = new Element(compound, new Compound([0]),name).html
+    let nbtTree = document.querySelector("#tree")
+    nbtTree.innerHTML = ""
+    nbtTree.append(html)
+    
+}
 
 function toggleHighlight(e) {
     let header = e.target.closest(".header")
